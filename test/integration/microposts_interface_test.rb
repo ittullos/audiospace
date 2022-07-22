@@ -8,6 +8,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
 
   test "micropost interface" do
     log_in_as(@user)
+    # byebug
     get root_path
     assert_select 'div.pagination'
     assert_select 'input[type=file]'
@@ -21,10 +22,9 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     content = "This micropost really ties the room together"
     image = fixture_file_upload('coolpic.jpg', 'image/jpeg')
     assert_difference 'Micropost.count', 1 do
-      post microposts_path, params: { micropost: { content: content, image: image } }
+      post microposts_path, params: { micropost: { content: content, images: [image] } }
     end
-    assert assigns(:micropost).image.attached?
-    # assert_redirected_to root_url
+    assert assigns(:micropost).images.attached?
     follow_redirect!
     assert_match content, response.body
 

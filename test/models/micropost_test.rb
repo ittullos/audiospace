@@ -1,4 +1,5 @@
 require "test_helper"
+include ActionDispatch::TestProcess
 
 class MicropostTest < ActiveSupport::TestCase
 
@@ -28,5 +29,15 @@ class MicropostTest < ActiveSupport::TestCase
 
   test "order should be most recent first" do
     assert_equal microposts(:most_recent), Micropost.first
+  end
+
+  test "micropost can have multiple images" do
+    @micropost.images.attach(io: File.open('test/fixtures/files/coolpic.jpg'),
+                                           filename: 'coolpic.jpg',
+                                           content_type: 'image/jpeg')
+    @micropost.images.attach(io: File.open('test/fixtures/files/android-flat.png'),
+                                           filename: 'android-flat.png',
+                                           content_type: 'image/png')
+    assert @micropost.valid?
   end
 end
