@@ -31,7 +31,7 @@ class MicropostTest < ActiveSupport::TestCase
     assert_equal microposts(:most_recent), Micropost.first
   end
 
-  test "micropost can have multiple images" do
+  test "can have multiple images" do
     @micropost.images.attach(io: File.open('test/fixtures/files/coolpic.jpg'),
                                            filename: 'coolpic.jpg',
                                            content_type: 'image/jpeg')
@@ -39,5 +39,9 @@ class MicropostTest < ActiveSupport::TestCase
                                            filename: 'android-flat.png',
                                            content_type: 'image/png')
     assert @micropost.valid?
+  end
+
+  test "does not save duplicates" do
+    byebug
   end
 end
