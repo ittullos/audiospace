@@ -25,6 +25,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       post microposts_path, params: { micropost: { content: content, images: [image] } }
     end
     assert assigns(:micropost).images.attached?
+    assert_equal 1, assigns(:micropost).images.count
     follow_redirect!
     assert_match content, response.body
 
