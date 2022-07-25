@@ -42,6 +42,9 @@ class MicropostTest < ActiveSupport::TestCase
   end
 
   test "does not save duplicates" do
-    byebug
+    @micropost.images.attach(io: File.open('test/fixtures/files/android-flat.png'),
+                                           filename: 'android-flat.png',
+                                           content_type: 'image/png')
+    assert_equal 1, @micropost.images.count
   end
 end
