@@ -4,9 +4,11 @@
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
+  <h6>Images<h6>
   <span class="image">
     <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png" %>
   </span>
+  <h6>Audio<h6>
   <span class="audio">
     <%= f.file_field :audios, multiple: true, accept: "audio/wav,audio/mpeg,audio/mp3" %>
   </span>
