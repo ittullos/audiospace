@@ -7,6 +7,9 @@
   <span class="image">
     <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png" %>
   </span>
+  <span class="audio">
+    <%= f.file_field :audios, multiple: true, accept: "audio/wav,audio/mpeg,audio/mp3" %>
+  </span>
 <% end %>
 
 <script type="text/javascript">
