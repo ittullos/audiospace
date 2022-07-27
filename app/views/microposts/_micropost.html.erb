@@ -3,15 +3,11 @@
   <span class="user"><%= link_to micropost.user.name, micropost.user %></span>
   <span class="content">
     <%= micropost.content %>
-    <% if micropost.images.attached? %>
-      <% micropost.images.attachments.each do |image| %>
-        <%= image_tag image.variant(resize_to_limit: [500, 500]) %>
-      <% end %>
+    <% micropost.images.attachments.each do |image| %>
+      <%= image_tag image.variant(resize_to_limit: [500, 500]) %>
     <% end %>
-    <% if micropost.audios.attached? %>
-      <% micropost.audios.attachments.each do |audio| %>
-        <%= audio_tag rails_blob_url(audio), controls: true %>
-      <% end %>
+    <% micropost.audios.attachments.each do |audio| %>
+      <%= audio_tag rails_blob_url(audio), controls: true %>
     <% end %>
   </span>
   <span class="timestamp">
