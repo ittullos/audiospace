@@ -59,4 +59,14 @@ class MicropostTest < ActiveSupport::TestCase
     post = Micropost.find("#{@micropost.id}")
     assert_equal 1, post.audios.count
   end
+
+  test "can contain videos" do
+    @micropost.videos.attach(io: File.open('test/fixtures/files/imagiraffe.mp4'),
+                                           filename: 'imagiraffe.mp4',
+                                           content_type: 'video/mp4')
+    assert @micropost.valid?
+    @micropost.save
+    post = Micropost.find("#{@micropost.id}")
+    assert_equal 1, post.videos.count
+  end
 end
