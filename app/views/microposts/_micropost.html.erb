@@ -7,7 +7,8 @@
       <% micropost.images.attachments.each do |image| %>
         <%= image_tag image.variant(resize_to_limit: [500, 500]) %>
       <% end %>
-    <% elsif micropost.audios.attached? %>
+    <% end %>
+    <% if micropost.audios.attached? %>
       <% micropost.audios.attachments.each do |audio| %>
         <%= audio_tag rails_blob_url(audio), controls: true %>
       <% end %>
